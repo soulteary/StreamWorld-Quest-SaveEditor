@@ -16,7 +16,7 @@ function findMoneyOffset(fileBuffer) {
         console.error('存档文件格式有误。');
         process.exit(1);
     }
-    return moneyOffset;
+    return moneyOffset + 2;
 }
 
 /**
@@ -40,9 +40,9 @@ function getMoney(fileBuffer) {
 function cheatMoney(fileBuffer) {
     const offset = findMoneyOffset(fileBuffer);
     return Buffer.concat([
-        fileBuffer.slice(0, offset),
+        fileBuffer.slice(0, offset + 2),
         CHEAT_MONEY,
-        fileBuffer.slice(offset + CHEAT_MONEY.length)
+        fileBuffer.slice(offset + 2 + CHEAT_MONEY.length)
     ]);
 }
 
